@@ -9,8 +9,10 @@
   "dependencies": {
     "@babel/runtime": "^7.1.2",
     "lodash": "^4.17.11",
+    "native-base": "^2.8.1",
     "react": "16.5.0",
     "react-native": "0.57.2",
+    "react-native-fbsdk": "^0.8.0",
     "react-native-maps": "https://github.com/react-community/react-native-maps.git",
     "react-navigation": "^2.17.0",
     "react-redux": "^5.0.7",

@@ -1,15 +1,17 @@
 import React, { Component } from 'react';
+import { createStackNavigator } from 'react-navigation';
+import LoginView from '../views/LoginView';
 
-class InitialRoutes extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {  };
+const Routes = createStackNavigator(
+    {
+        Login: {
+            screen: LoginView
+        }
+    },
+    {
+        initialRouteName: 'Login',
+        headerMode: 'none'
     }
-    render() {
-        return (
-            <View />
-        );
-    }
-}
+)
 
-export default InitialRoutes;
+export default Routes;
