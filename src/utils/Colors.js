@@ -6,7 +6,8 @@ export const HARD_BLACK_COLOR = '#161629';
 export const DARKNESS_BLACK_COLOR = '#09091a';
 
 const Colors = {
-    
+    DrawerNavigatorAvatar: DARKNESS_BLACK_COLOR,
+    DrawerNavigatorAvatarUsername: 'white'
 }
 
 export default Colors;

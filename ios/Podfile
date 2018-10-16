@@ -6,6 +6,4 @@ target 'UberClone' do
   # use_frameworks!
 
   # Pods for UberClone
-  pod 'FBSDKLoginKit'
-
 end

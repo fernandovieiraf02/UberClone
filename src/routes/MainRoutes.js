@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { createDrawerNavigator } from 'react-navigation';
+import { Text } from 'react-native';
 import SettingsView from '../views/SettingsView';
 import HomeView from '../views/HomeView';
 import YourTravelsView from '../views/YourTravelsView';
@@ -19,13 +20,14 @@ const MainRoutes = createDrawerNavigator(
         Home: {
             screen: HomeView,
             navigationOptions: {
-                drawerLabel: <WithoutLabelItem />
+                drawerLabel: <WithoutLabelItem />,
+                
             }
         },
         YourTravels: {
             screen: YourTravelsView,
             navigationOptions: {
-                title: Labels[0]
+               title: Labels[0]
             }
         },
         Help: {

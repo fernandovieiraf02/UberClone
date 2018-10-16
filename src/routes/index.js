@@ -12,7 +12,7 @@ const routes = createStackNavigator({
         }
     },
     {
-        initialRouteName: 'Initial',
+        initialRouteName: 'Main',
         headerMode: 'none'
     }
 )
