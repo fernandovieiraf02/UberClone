@@ -31,7 +31,12 @@ const HomeView = StyleSheet.create({
         marginHorizontal: 10, 
         backgroundColor: 'white', 
         elevation: 4, 
-        shadowRadius: 3, 
+        shadowOpacity: 0.3,
+        shadowRadius: 2,
+        shadowOffset: {
+            width: 1,
+            height: 1
+        },
         position: 'absolute', 
         flexDirection: 'row', 
         justifyContent: 'flex-start', 
