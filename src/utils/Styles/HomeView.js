@@ -25,6 +25,22 @@ const HomeView = StyleSheet.create({
         width: Dimensions.WIDTH,
         top: 0
     },
+    SearchBar: {
+        padding: 5, 
+        marginTop: 100, 
+        marginHorizontal: 10, 
+        backgroundColor: 'white', 
+        elevation: 4, 
+        shadowRadius: 3, 
+        position: 'absolute', 
+        flexDirection: 'row', 
+        justifyContent: 'flex-start', 
+        alignItems: 'center',
+        borderTopLeftRadius: 2,
+        borderTopRightRadius: 2,
+        borderBottomLeftRadius: 8, 
+        borderBottomRightRadius: 8
+    },
     container: {
         height: Dimensions.HEIGHT,
         width: Dimensions.WIDTH

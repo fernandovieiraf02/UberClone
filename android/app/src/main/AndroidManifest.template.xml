@@ -25,7 +25,7 @@
       <!-- REACT-NATIVE-MAPS COMPONENT SETTINGS -->
       <meta-data
         android:name="com.google.android.geo.API_KEY"
-        android:value="AIzaSyCDWnJNrlOQ6X4flZd32EFW7WjFR3PzLiY"/>
+        android:value="YOUR_API_KEY_HERE"/>
       <!-- END SETTINGS -->
     </application>
 </manifest>

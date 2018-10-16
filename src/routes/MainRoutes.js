@@ -20,8 +20,7 @@ const MainRoutes = createDrawerNavigator(
         Home: {
             screen: HomeView,
             navigationOptions: {
-                drawerLabel: <WithoutLabelItem />,
-                
+                drawerLabel: <WithoutLabelItem />
             }
         },
         YourTravels: {
@@ -57,7 +56,10 @@ const MainRoutes = createDrawerNavigator(
     },
     {
         initialRouteName: 'Home',
-        contentComponent: ContentDrawerNavigator
+        contentComponent: ContentDrawerNavigator,
+        contentOptions: {
+            labelStyle: { fontFamily: 'Open Sans', fontSize: 18, color: 'black', fontWeight: '100' }
+        }
     }
 )
 
