@@ -1,53 +1,40 @@
 import React, { Component } from 'react';
-import { View, NativeModules, LayoutAnimation, StyleSheet, Dimensions, Platform } from 'react-native';
+import { View, Animated, StyleSheet, Dimensions, Platform } from 'react-native';
 
-const { UIManager } = NativeModules;
 const { width, height } = Dimensions.get('window');
 
-
-if(Platform.OS === 'android') {
-    UIManager.setLayoutAnimationEnabledExperimental(true);
-}
-
-const ConfigAnimation = {
-    duration: 600,
-    /* create: {
-      type: LayoutAnimation.Types.linear,
-      property: LayoutAnimation.Properties.scaleXY,
-      springDamping: 0.7
-    }, */
-    update: {
-      type: LayoutAnimation.Types.linear,
-      property: LayoutAnimation.Properties.opacity,
-      springDamping: 0.7
-    },
-}
 
 class SplashView extends Component {
     constructor(props) {
         super(props);
-        this.state = { h: 50, w: 50 };
-        LayoutAnimation.configureNext(ConfigAnimation);
-        //LayoutAnimation.Presets.spring.duration = 400;
-        //LayoutAnimation.configureNext(LayoutAnimation.Presets.spring);
+        this.state = { w: new Animated.Value(50), h: new Animated.Value(50), borderRadius: new Animated.Value(100) };
     }
 
-    _onPress = () => {
-        this.setState({ h: this.state.h + height, w: this.state.w + width });
+    _start = () => {
+        Animated.parallel([
+            Animated.timing(this.state.w, {
+                toValue: height + 200,
+                duration: 2000
+            }),
+            Animated.timing(this.state.h, {
+                toValue: height + 200,
+                duration: 2000
+            }),
+            Animated.timing(this.state.borderRadius, {
+                toValue: 5000,
+                duration: 2000
+            })
+        ]).start(() => this.props.navigation.navigate('Home'));
     }
 
     componentDidMount() {
-        setTimeout(() => {
-            this._onPress();
-            this.props.navigation.navigate('Home');
-        }
-            , 1000);
+        this._start();
     }
 
     render() {      
         return (
             <View style={{flex: 1, backgroundColor: 'black', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
-                <View style={{ height: this.state.h, width: this.state.w, borderRadius: 100 + this.state.h, backgroundColor: 'white' }}/>
+                <Animated.View style={{ height: this.state.h, width: this.state.w, borderRadius: this.state.borderRadius, backgroundColor: 'white' }}/>
             </View>
         );
     }
