@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, Animated, StyleSheet, Dimensions, Platform } from 'react-native';
-
+import SplashNative from 'rn-splash-screen';
 const { width, height } = Dimensions.get('window');
 
 
@@ -28,6 +28,7 @@ class SplashView extends Component {
     }
 
     componentDidMount() {
+        Platform.OS === 'android' && SplashNative.hide();
         this._start();
     }
 

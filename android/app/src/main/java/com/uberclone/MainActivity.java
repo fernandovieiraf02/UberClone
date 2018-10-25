@@ -23,7 +23,6 @@ public class MainActivity extends ReactActivity {
     protected void onCreate(Bundle savedInstanceState) {
         // Show the js-controlled splash screen
         SplashScreen.show(this, getReactInstanceManager());
-
         super.onCreate(savedInstanceState);
 
         // [...]

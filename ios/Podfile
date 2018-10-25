@@ -6,4 +6,6 @@ target 'UberClone' do
   # use_frameworks!
 
   # Pods for UberClone
+  pod 'rn-splash-screen', :path => '../node_modules/rn-splash-screen'
+
 end
