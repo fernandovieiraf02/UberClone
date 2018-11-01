@@ -7,22 +7,18 @@ const { width, height } = Dimensions.get('window');
 class SplashView extends Component {
     constructor(props) {
         super(props);
-        this.state = { w: new Animated.Value(50), h: new Animated.Value(50), borderRadius: new Animated.Value(100) };
+        this.state = { size: new Animated.Value(50), borderRadius: new Animated.Value(100) };
     }
 
     _start = () => {
         Animated.parallel([
-            Animated.timing(this.state.w, {
-                toValue: height + 200,
-                duration: 2000
-            }),
-            Animated.timing(this.state.h, {
-                toValue: height + 200,
-                duration: 2000
+            Animated.timing(this.state.size, {
+                toValue: height + 100,
+                duration: 1000
             }),
             Animated.timing(this.state.borderRadius, {
-                toValue: 5000,
-                duration: 2000
+                toValue: 1000,
+                duration: 1000
             })
         ]).start(() => this.props.navigation.navigate('Home'));
     }
@@ -35,7 +31,7 @@ class SplashView extends Component {
     render() {      
         return (
             <View style={{flex: 1, backgroundColor: 'black', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
-                <Animated.View style={{ height: this.state.h, width: this.state.w, borderRadius: this.state.borderRadius, backgroundColor: 'white' }}/>
+                <Animated.View style={{ height: this.state.size, width: this.state.size, borderRadius: this.state.borderRadius, backgroundColor: 'white' }}/>
             </View>
         );
     }
