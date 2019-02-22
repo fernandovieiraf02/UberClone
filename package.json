@@ -1,5 +1,5 @@
 {
-  "name": "UberClone",
+  "name": "Driverfy",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -17,6 +17,7 @@
     "native-base": "^2.8.1",
     "react": "16.5.0",
     "react-native": "0.57.2",
+    "react-native-google-places": "^2.5.2",
     "react-native-maps": "https://github.com/react-community/react-native-maps.git",
     "react-navigation": "^2.17.0",
     "react-redux": "^5.0.7",

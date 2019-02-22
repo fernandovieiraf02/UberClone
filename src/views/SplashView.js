@@ -14,11 +14,11 @@ class SplashView extends Component {
         Animated.parallel([
             Animated.timing(this.state.size, {
                 toValue: height + 100,
-                duration: 1000
+                duration: 500
             }),
             Animated.timing(this.state.borderRadius, {
                 toValue: 1000,
-                duration: 1000
+                duration: 500
             })
         ]).start(() => this.props.navigation.navigate('Home'));
     }
