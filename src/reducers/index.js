@@ -1,8 +1,6 @@
 import { combineReducers } from 'redux';
 import MapPlacesReducer from './MapPlacesReducer';
 
-const Reducers = combineReducers({
+export default combineReducers({
     MapPlacesReducer
 });
-
-export default Reducers;

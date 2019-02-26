@@ -1,14 +1,15 @@
-import React, {Component} from 'react';
-import {View, Text, TouchableOpacity} from 'react-native';
+import React, { Component } from 'react';
+import { View, Text, TouchableOpacity } from 'react-native';
+import { connect } from 'react-redux';
+import { setPlaceSelected } from '../../actions/MapPlacesActions';
 import RNGooglePlaces from 'react-native-google-places'; 
 
 
 class Search extends Component {
   openSearchModal() {
     RNGooglePlaces.openPlacePickerModal()
-    .then((place) => {
-      console.warn(place);
-      
+    .then(place => {
+        this.props.setPlaceSelected(place);
     })
     .catch(error => console.error(error.message));  // error is a Javascript Error object
   }
@@ -27,4 +28,4 @@ class Search extends Component {
   }
 }
 
-export default Search;
+export default connect(null, { setPlaceSelected }, null)(Search);

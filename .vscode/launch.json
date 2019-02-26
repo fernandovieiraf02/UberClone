@@ -24,9 +24,10 @@
         },
         {
             "type": "chrome",
-            "request": "launch",
-            "name": "Launch Chrome against localhost",
-            "url": "http://localhost:8080",
+            "port": 9222,
+            "request": "attach",
+            "name": "Attach Chrome against localhost",
+            "url": "http://localhost:8081/debugger-ui/",
             "webRoot": "${workspaceFolder}"
         }
     ]
