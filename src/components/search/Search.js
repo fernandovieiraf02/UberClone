@@ -7,21 +7,20 @@ class Search extends Component {
   openSearchModal() {
     RNGooglePlaces.openPlacePickerModal()
     .then((place) => {
-    console.warn(place);
-		// place represents user's selection from the
-		// suggestions and it is a simplified Google Place object.
+      console.warn(place);
+      
     })
     .catch(error => console.error(error.message));  // error is a Javascript Error object
   }
 
   render() {
     return (
-      <View style={{flex: 1, height: 40, flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
+      <View style={{flex: 1, height: 40, flexDirection: 'column', justifyContent: 'center', alignItems: 'flex-start'}}>
         <TouchableOpacity
           style={{flex: 1, flexDirection: 'column',justifyContent: 'center', alignItems: 'center'}}
           onPress={() => this.openSearchModal()}
         >
-          <Text>Open Place Picker</Text>
+          <Text style={{textAlign:'left'}}>Para onde vamos?</Text>
         </TouchableOpacity>
       </View>
     );
