@@ -1,8 +1,8 @@
-import { PLACE_SELECTED } from "./Types";
+import { SET_MAP_REGION } from "./Types";
 
-export const setPlaceSelected = (places) => (
+export const setMapRegion = (region) => (
     {
-        type: PLACE_SELECTED,
-        payload: places
+        type: SET_MAP_REGION,
+        payload: region
     }
 );

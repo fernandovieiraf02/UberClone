@@ -40,7 +40,7 @@ const HomeView = StyleSheet.create({
         position: 'absolute', 
         flexDirection: 'row', 
         justifyContent: 'flex-start', 
-        alignItems: 'center',
+        alignItems: 'flex-start',
         borderTopLeftRadius: 2,
         borderTopRightRadius: 2,
         borderBottomLeftRadius: 8, 
