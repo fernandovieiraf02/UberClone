@@ -9,6 +9,18 @@ import { setMapRegion } from '../../actions/MapPlacesActions';
 import { setPlaceOrigin } from '../../actions/DirectionsActions';
 import { getPixelSize } from '../../utils';
 import { Icon } from 'native-base';
+import PopulateCarsInMap from '../../utils/PopulateCarsInMap';
+
+const request = {
+  directionsServiceBaseUrl: "https://maps.googleapis.com/maps/api/directions/json",
+  origin: '',
+  waypoints: '',
+  destination: '-20.4435,-54.6478', //Campo Grande, MS - BRASIL
+  apikey: "AIzaSyCDWnJNrlOQ6X4flZd32EFW7WjFR3PzLiY",
+  mode: 'driving',
+  language: 'pt',
+  request: `${directionsServiceBaseUrl}?origin=${origin}&waypoints=${waypoints}&destination=${destination}&key=${apikey}&mode=${mode}&language=${language}`
+};
 
 
 class Map extends Component {
@@ -32,9 +44,26 @@ class Map extends Component {
             latitude
         };
         
+        //Request to get direction for put random cars in the map
+        request.origin = `${latitude},${longitude}`;
+
         this.setState({initialRegion: region});
         this.props.setMapRegion(region);
         this.props.setPlaceOrigin(region);
+        fetchRoute(directionsServiceBaseUrl, origin, waypoints, destination, apikey, mode, language)
+        this.directionsRef.fetchRoute(
+          request.directionsServiceBaseUrl,
+          request.origin,
+          request.waypoints,
+          request.destination,
+          request.apikey,
+          request.mode,
+          request.language
+        ).then( result =>{
+          const carsPos = PopulateCarsInMap(0, origin, result.coordinates);
+          this.setState({carsPos});
+        })
+        .catch(err => {alert(err)});
       },
       (error) => alert(error.message)
    );
@@ -55,20 +84,16 @@ class Map extends Component {
       >
         <Fragment>
           <Directions onReady={(result) => {
-            this.mapRef.fitToCoordinates(result.coordinates, {
-              edgePadding: {
-                right: getPixelSize(20),
-                left: getPixelSize(20),
-                top: getPixelSize(20),
-                bottom: getPixelSize(20)
-            }});
-          }}/>
+              console.log(result);
+              this.mapRef.fitToCoordinates(result.coordinates);
+            }}
+            ref={el => {this.directionsRef = el}}
+          />
           {
             this.props.destination &&
             <Marker 
               coordinate={this.props.destination} 
-              achor={{x: 0, y:0}} 
-              icon={<Icon type='FontAwesome' name='square' style={{ margin: 10, marginTop: 18, fontSize: 8 }}/>}
+              anchor={{x: 0, y:0}} 
             />
           }
         </Fragment> 
