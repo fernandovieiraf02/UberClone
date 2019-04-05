@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import MapViewDirections from 'react-native-maps-directions';
 import { SOFT_BLACK_COLOR } from '../../utils/Colors';
 
+const APIKEY = process.env['GOOGLE_API_KEY'];
+
 class Directions extends Component {
   render() {
     const { destination, origin, onReady } = this.props;
@@ -11,7 +13,7 @@ class Directions extends Component {
         destination={destination}
         origin={origin}
         onReady={onReady}
-        apikey='AIzaSyCDWnJNrlOQ6X4flZd32EFW7WjFR3PzLiY'
+        apikey={APIKEY}
         strokeWidth={3}
         strokeColor={SOFT_BLACK_COLOR}
       />

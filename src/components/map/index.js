@@ -11,28 +11,34 @@ import { getPixelSize } from '../../utils';
 import { Icon } from 'native-base';
 import PopulateCarsInMap from '../../utils/PopulateCarsInMap';
 
+const APIKEY = process.env['GOOGLE_API_KEY'];
+
 const request = {
   directionsServiceBaseUrl: "https://maps.googleapis.com/maps/api/directions/json",
   origin: '',
   waypoints: '',
   destination: '-20.4435,-54.6478', //Campo Grande, MS - BRASIL
-  apikey: "AIzaSyCDWnJNrlOQ6X4flZd32EFW7WjFR3PzLiY",
+  apikey: {APIKEY},
   mode: 'driving',
   language: 'pt',
-  request: `${directionsServiceBaseUrl}?origin=${origin}&waypoints=${waypoints}&destination=${destination}&key=${apikey}&mode=${mode}&language=${language}`
+  //request: `${directionsServiceBaseUrl}?origin=${origin}&waypoints=${waypoints}&destination=${destination}&key=${apikey}&mode=${mode}&language=${language}`
 };
 
 
 class Map extends Component {
   constructor(props) {
     super(props);
-    this.state = { initialRegion: {
-			longitude: 0,
-			latitude: 0,
-			longitudeDelta: 0.0134,
-			latitudeDelta: 0.0143
-    }};
+    this.state = { 
+      initialRegion: {
+        longitude: 0,
+        latitude: 0,
+        longitudeDelta: 0.0134,
+        latitudeDelta: 0.0143
+      },
+      carsPos: []
+    };
     this.mapRef = null;
+    this.directionsRef = null;
   }
 
   async componentDidMount() {
@@ -50,20 +56,22 @@ class Map extends Component {
         this.setState({initialRegion: region});
         this.props.setMapRegion(region);
         this.props.setPlaceOrigin(region);
-        fetchRoute(directionsServiceBaseUrl, origin, waypoints, destination, apikey, mode, language)
-        this.directionsRef.fetchRoute(
-          request.directionsServiceBaseUrl,
-          request.origin,
-          request.waypoints,
-          request.destination,
-          request.apikey,
-          request.mode,
-          request.language
-        ).then( result =>{
-          const carsPos = PopulateCarsInMap(0, origin, result.coordinates);
-          this.setState({carsPos});
-        })
-        .catch(err => {alert(err)});
+        if (this.directionsRef !== null) {
+          this.directionsRef.fetchRoute(
+            request.directionsServiceBaseUrl,
+            request.origin,
+            request.waypoints,
+            request.destination,
+            request.apikey,
+            request.mode,
+            request.language
+          ).then( result =>{
+            const carsPos = PopulateCarsInMap(2,69978 /**5 km*/, origin, result.coordinates);
+            console.log(carsPos);
+            this.setState({carsPos});
+          })
+          .catch(err => {alert(err)});
+        }
       },
       (error) => alert(error.message)
    );
@@ -87,7 +95,7 @@ class Map extends Component {
               console.log(result);
               this.mapRef.fitToCoordinates(result.coordinates);
             }}
-            ref={el => {this.directionsRef = el}}
+            onRef={el => {this.directionsRef = el}}
           />
           {
             this.props.destination &&
@@ -95,6 +103,16 @@ class Map extends Component {
               coordinate={this.props.destination} 
               anchor={{x: 0, y:0}} 
             />
+          }
+          {
+            this.state.carsPos.map((item, index) => {
+              return (
+                <Marker 
+                  coordinate={item}
+                  image={{uri: require("../../../assets/icons/car.png")}}
+                />
+              )
+            })
           }
         </Fragment> 
       </MapView>

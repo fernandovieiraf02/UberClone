@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 import { DARK_GRAY, WHITE } from '../../utils/Colors';
 
+const APIKEY = process.env['GOOGLE_API_KEY'];
+
 class Autocomplete extends Component {
   constructor(props) {
     super(props);
@@ -15,7 +17,7 @@ class Autocomplete extends Component {
         placeholderTextColor={DARK_GRAY}
         onPress={(data, details) => {this.props.handlePlaceSelected(data, details)}}
         query={{
-          key: 'AIzaSyCDWnJNrlOQ6X4flZd32EFW7WjFR3PzLiY',
+          key: {APIKEY},
           language: 'pt'
         }}
         textInputProps={{
